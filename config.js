@@ -293,7 +293,7 @@ const CONFIG = {
   formulario: {
     etiqueta: "Inscripción",                 // etiqueta pequeña sobre el título
     titulo: "Reserva tu plaza",
-    subtitulo: "Completa el formulario y aseguramos tu plaza.",
+    subtitulo: "Completa el formulario y obtén tu plaza.",
     badge: "",               // pastilla lavanda dentro de la tarjeta
     // Lista de beneficios (con check) — añade o quita los que quieras
     beneficios: [
