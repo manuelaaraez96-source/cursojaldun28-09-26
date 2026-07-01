@@ -89,7 +89,7 @@ const CONFIG = {
      5. TEMARIO  (programa de ponencias — añade o elimina temas libremente)
      --------------------------------------------------------------------- */
   temario: {
-    etiqueta: "El programa que vamos a tratar",
+    etiqueta: "",
     titulo: "Programa de ponencias",
     subtitulo: "Un recorrido completo por las principales patologías capilares y su abordaje desde el centro de imagen personal.",
     nota: "Nota: El programa de la formación puede estar sujeto a modificaciones en función de la marcha del curso y del criterio de los ponentes.",

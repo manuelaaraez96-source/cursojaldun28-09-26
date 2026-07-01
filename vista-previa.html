@@ -103,6 +103,7 @@ h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 700; letter-sp
   font-family: var(--font-serif); font-weight: 700;
   font-size: clamp(1.9rem, 4.5vw, 3rem); line-height: 1.1; letter-spacing: -0.02em;
 }
+#temario-title { color: var(--lavender-deeper); }
 .section__subtitle {
   margin-top: 1rem; font-size: clamp(1.02rem, 2vw, 1.18rem);
   color: var(--muted); max-width: 60ch;
@@ -737,7 +738,7 @@ const CONFIG = {
      5. TEMARIO  (programa de ponencias — añade o elimina temas libremente)
      --------------------------------------------------------------------- */
   temario: {
-    etiqueta: "El programa que vamos a tratar",
+    etiqueta: "",
     titulo: "Programa de ponencias",
     subtitulo: "Un recorrido completo por las principales patologías capilares y su abordaje desde el centro de imagen personal.",
     nota: "Nota: El programa de la formación puede estar sujeto a modificaciones en función de la marcha del curso y del criterio de los ponentes.",
@@ -1168,7 +1169,8 @@ const CONFIG = {
 
   function renderTemario(c) {
     const t = c.temario;
-    setText("temario-eyebrow", t.etiqueta || "");
+    const eyebrow = document.getElementById("temario-eyebrow");
+    if (eyebrow) { if (t.etiqueta) eyebrow.textContent = t.etiqueta; else eyebrow.style.display = "none"; }
     setText("temario-title", t.titulo);
     setText("temario-subtitle", t.subtitulo);
     const grid = $("#temario-grid");

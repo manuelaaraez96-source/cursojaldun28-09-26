@@ -69,6 +69,7 @@ h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 700; letter-sp
   font-family: var(--font-serif); font-weight: 700;
   font-size: clamp(1.9rem, 4.5vw, 3rem); line-height: 1.1; letter-spacing: -0.02em;
 }
+#temario-title { color: var(--lavender-deeper); }
 .section__subtitle {
   margin-top: 1rem; font-size: clamp(1.02rem, 2vw, 1.18rem);
   color: var(--muted); max-width: 60ch;

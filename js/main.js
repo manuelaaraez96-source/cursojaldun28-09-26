@@ -178,7 +178,8 @@
 
   function renderTemario(c) {
     const t = c.temario;
-    setText("temario-eyebrow", t.etiqueta || "");
+    const eyebrow = document.getElementById("temario-eyebrow");
+    if (eyebrow) { if (t.etiqueta) eyebrow.textContent = t.etiqueta; else eyebrow.style.display = "none"; }
     setText("temario-title", t.titulo);
     setText("temario-subtitle", t.subtitulo);
     const grid = $("#temario-grid");
