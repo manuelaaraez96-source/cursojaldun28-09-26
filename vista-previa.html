@@ -171,6 +171,7 @@ h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 700; letter-sp
   font-family: var(--font-serif); font-weight: 600;
   font-size: clamp(1.9rem, 4.6vw, 3.1rem); line-height: 1.12; letter-spacing: -0.01em;
 }
+.hero__title-light { font-weight: 300; }
 .hero__subtitle { margin-top: 1.5rem; font-size: clamp(1.05rem, 2.2vw, 1.22rem); color: var(--muted); max-width: 540px; }
 .hero__meta { display: flex; flex-wrap: wrap; gap: .4rem 0; margin: 1.9rem 0; max-width: 560px; }
 .hero__meta-item {
@@ -694,6 +695,8 @@ const CONFIG = {
     titulo: "Principales patologías capilares que se encuentran en los centros de imagen personal",
     // Parte del título que se resalta con el subrayado lavanda (déjalo "" si no quieres)
     resalte: "patologías capilares",
+    // Parte final del título que se muestra con una tipografía más fina
+    ligero: "que se encuentran en los centros de imagen personal",
     subtitulo: "Formación Superior en Tricología aplicada a centros de imagen personal. Aprende a detectar las principales patologías del cuero cabelludo y cómo colaborar en su tratamiento.",
     // Fecha y hora de inicio para la cuenta atrás (formato AÑO-MES-DÍAThora:min:seg)
     cuentaAtras: "2026-09-28T09:30:00",
@@ -1079,6 +1082,9 @@ const CONFIG = {
       let t = h.titulo || "";
       if (h.resalte && t.indexOf(h.resalte) !== -1) {
         t = t.replace(h.resalte, `<mark class="hl">${h.resalte}</mark>`);
+      }
+      if (h.ligero && t.indexOf(h.ligero) !== -1) {
+        t = t.replace(h.ligero, `<span class="hero__title-light">${h.ligero}</span>`);
       }
       titleEl.innerHTML = t;
     }

@@ -89,6 +89,9 @@
       if (h.resalte && t.indexOf(h.resalte) !== -1) {
         t = t.replace(h.resalte, `<mark class="hl">${h.resalte}</mark>`);
       }
+      if (h.ligero && t.indexOf(h.ligero) !== -1) {
+        t = t.replace(h.ligero, `<span class="hero__title-light">${h.ligero}</span>`);
+      }
       titleEl.innerHTML = t;
     }
     setText("hero-subtitle", h.subtitulo);

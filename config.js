@@ -45,6 +45,8 @@ const CONFIG = {
     titulo: "Principales patologías capilares que se encuentran en los centros de imagen personal",
     // Parte del título que se resalta con el subrayado lavanda (déjalo "" si no quieres)
     resalte: "patologías capilares",
+    // Parte final del título que se muestra con una tipografía más fina
+    ligero: "que se encuentran en los centros de imagen personal",
     subtitulo: "Formación Superior en Tricología aplicada a centros de imagen personal. Aprende a detectar las principales patologías del cuero cabelludo y cómo colaborar en su tratamiento.",
     // Fecha y hora de inicio para la cuenta atrás (formato AÑO-MES-DÍAThora:min:seg)
     cuentaAtras: "2026-09-28T09:30:00",
