@@ -214,6 +214,14 @@ const CONFIG = {
         redes: { linkedin: "", twitter: "", web: "" },
       },
       {
+        foto: "assets/ponente-david.jpg",
+        nombre: "David Martínez",
+        cargo: "Director Técnico de Centros Capilares",
+        empresa: "Jaldún",
+        bio: "Director Técnico Centros Capilares Jaldún.",
+        redes: { linkedin: "", twitter: "", web: "" },
+      },
+      {
         foto: "assets/ponente.svg",
         nombre: "Dra. Rosa Miralles Gil",
         cargo: "Especialista en salud mental",
@@ -243,14 +251,6 @@ const CONFIG = {
         cargo: "Medicina ortomolecular y MTC",
         empresa: "",
         bio: "Especialista en medicina ortomolecular y medicina tradicional china.",
-        redes: { linkedin: "", twitter: "", web: "" },
-      },
-      {
-        foto: "assets/ponente-david.jpg",
-        nombre: "David Martínez",
-        cargo: "Director Técnico de Centros Capilares",
-        empresa: "Jaldún",
-        bio: "Director Técnico Centros Capilares Jaldún.",
         redes: { linkedin: "", twitter: "", web: "" },
       },
       {
