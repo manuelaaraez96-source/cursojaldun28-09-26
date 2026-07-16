@@ -523,6 +523,24 @@ h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 700; letter-sp
 }
 
 </style>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '324836267935139');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=324836267935139&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
 
@@ -1386,6 +1404,37 @@ const CONFIG = {
         loading="lazy"></iframe>`;
   }
 
+  // Dispara el evento "Lead" del Píxel de Meta cuando el formulario embebido
+  // (GoHighLevel/LeadConnector) confirma el envío vía window.postMessage.
+  // Nota: si el pixel no marca el Lead al probar un envío real, abre la consola,
+  // envía el formulario y revisa el "data" del evento "message" recibido para
+  // ajustar la condición de detección de abajo.
+  function initFormLeadTracking(c) {
+    const iframeSrc = c.formulario && c.formulario.iframeSrc;
+    if (!iframeSrc || typeof fbq === "undefined") return;
+    let formOrigin;
+    try { formOrigin = new URL(iframeSrc, window.location.href).origin; }
+    catch (e) { return; }
+
+    let fired = false;
+    window.addEventListener("message", (event) => {
+      if (event.origin !== formOrigin || fired) return;
+      let data = event.data;
+      if (typeof data === "string") {
+        try { data = JSON.parse(data); } catch (e) { /* no era JSON */ }
+      }
+      const raw = typeof event.data === "string" ? event.data : JSON.stringify(event.data || "");
+      const looksLikeSubmit =
+        (data && typeof data === "object" &&
+          (data.type === "form_submit" || data.event === "form_submit" || data.type === "formSubmit")) ||
+        /form.?submit/i.test(raw);
+      if (looksLikeSubmit) {
+        fired = true;
+        fbq("track", "Lead");
+      }
+    });
+  }
+
   function renderFooter(c) {
     const f = c.footer;
     setText("footer-desc", f.descripcion);
@@ -1461,6 +1510,7 @@ const CONFIG = {
     renderFormulario(CONFIG);
     renderFooter(CONFIG);
     renderSchema(CONFIG);
+    initFormLeadTracking(CONFIG);
 
     initScroll();
     initReveal();

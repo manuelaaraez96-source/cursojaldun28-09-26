@@ -322,6 +322,39 @@
         loading="lazy"></iframe>`;
   }
 
+  // Dispara el evento "Lead" del Píxel de Meta cuando el formulario embebido
+  // (GoHighLevel/LeadConnector) confirma el envío. El widget se comunica con
+  // la página vía window.postMessage al enviarse; como es un iframe de otro
+  // origen no podemos leer su DOM, así que escuchamos ese mensaje.
+  // Nota: si el pixel no marca el Lead al probar un envío real, abre la consola,
+  // envía el formulario y revisa el "data" del evento "message" recibido para
+  // ajustar la condición de detección de abajo.
+  function initFormLeadTracking(c) {
+    const iframeSrc = c.formulario && c.formulario.iframeSrc;
+    if (!iframeSrc || typeof fbq === "undefined") return;
+    let formOrigin;
+    try { formOrigin = new URL(iframeSrc, window.location.href).origin; }
+    catch (e) { return; }
+
+    let fired = false;
+    window.addEventListener("message", (event) => {
+      if (event.origin !== formOrigin || fired) return;
+      let data = event.data;
+      if (typeof data === "string") {
+        try { data = JSON.parse(data); } catch (e) { /* no era JSON */ }
+      }
+      const raw = typeof event.data === "string" ? event.data : JSON.stringify(event.data || "");
+      const looksLikeSubmit =
+        (data && typeof data === "object" &&
+          (data.type === "form_submit" || data.event === "form_submit" || data.type === "formSubmit")) ||
+        /form.?submit/i.test(raw);
+      if (looksLikeSubmit) {
+        fired = true;
+        fbq("track", "Lead");
+      }
+    });
+  }
+
   function renderFooter(c) {
     const f = c.footer;
     setText("footer-desc", f.descripcion);
@@ -397,6 +430,7 @@
     renderFormulario(CONFIG);
     renderFooter(CONFIG);
     renderSchema(CONFIG);
+    initFormLeadTracking(CONFIG);
 
     initScroll();
     initReveal();
