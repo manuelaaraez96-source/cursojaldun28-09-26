@@ -322,48 +322,6 @@
         loading="lazy"></iframe>`;
   }
 
-  // Dispara el evento "Lead" del Píxel de Meta cuando el formulario embebido
-  // (GoHighLevel/LeadConnector) parece haberse enviado.
-  //
-  // IMPORTANTE — limitación conocida: este embed (iframe simple, sin el
-  // form_embed.js oficial de GHL) NO envía ningún window.postMessage al
-  // enviarse el formulario. Se verificó descargando y revisando el bundle
-  // real del formulario y el script form_embed.js de GoHighLevel: ninguno
-  // emite un evento de tipo "submit" hacia la página padre, y escuchando
-  // "message" en vivo con el iframe cargado no llega ni un solo mensaje.
-  // Por eso, en vez de escuchar postMessage (que nunca llega), se usa como
-  // señal el evento "load" del propio iframe: la primera carga es el
-  // formulario en sí; si el iframe vuelve a cargar pasado un margen de
-  // tiempo (típico de un POST que navega a una página de "gracias" dentro
-  // del iframe), se asume que fue un envío y se dispara el Lead.
-  //
-  // Esto es una aproximación razonable pero no 100% infalible. La forma
-  // fiable de verificarlo es: 1) enviar el formulario una vez en producción
-  // y confirmar en el Events Manager de Meta que llega el Lead, o 2) mejor
-  // aún, configurar el Píxel de Meta directamente dentro de GoHighLevel
-  // (Sitios/Formulario → Configuración → Integraciones → Facebook Pixel),
-  // donde sí conocen el evento de envío real y lo disparan de forma nativa.
-  function initFormLeadTracking(c) {
-    if (typeof fbq === "undefined") return;
-    const mount = document.getElementById("form-embed");
-    const iframe = mount && mount.querySelector("iframe");
-    if (!iframe) return;
-
-    let fired = false;
-    let loadCount = 0;
-    const readyAt = Date.now();
-    const GRACE_MS = 4000; // ignora recargas que ocurran nada más insertar el iframe
-
-    iframe.addEventListener("load", () => {
-      loadCount++;
-      const isFirstRealLoad = loadCount === 1;
-      const withinGrace = Date.now() - readyAt < GRACE_MS;
-      if (fired || isFirstRealLoad || withinGrace) return;
-      fired = true;
-      fbq("track", "Lead");
-    });
-  }
-
   function renderFooter(c) {
     const f = c.footer;
     setText("footer-desc", f.descripcion);
@@ -439,7 +397,6 @@
     renderFormulario(CONFIG);
     renderFooter(CONFIG);
     renderSchema(CONFIG);
-    initFormLeadTracking(CONFIG);
 
     initScroll();
     initReveal();
