@@ -58,7 +58,7 @@ const CONFIG = {
     modalidad: "Presencial",
     ciudad: "Centro de Congresos de Elche",
     textoBoton: "Reserva tu plaza",
-    textoBotonSecundario: "Ver el programa",   // botón secundario (lleva al temario). Déjalo "" para ocultarlo.
+    textoBotonSecundario: "",   // botón secundario. Déjalo "" para ocultarlo.
     // Imagen del banner (lado derecho). Cambia por la tuya en assets/
     imagen: "assets/hero.jpg",
     imagenAlt: "Detalle microscópico del cuero cabelludo y el cabello",
@@ -110,78 +110,6 @@ const CONFIG = {
   },
 
   /* ---------------------------------------------------------------------
-     5. TEMARIO  (programa de ponencias — añade o elimina temas libremente)
-     --------------------------------------------------------------------- */
-  temario: {
-    etiqueta: "",
-    titulo: "Programa de ponencias",
-    subtitulo: "Un recorrido completo por las principales patologías capilares y su abordaje desde el centro de imagen personal.",
-    nota: "Nota: El programa de la formación puede estar sujeto a modificaciones en función de la marcha del curso y del criterio de los ponentes.",
-    temas: [
-      {
-        numero: "01",
-        titulo: "Introducción a las patologías capilares",
-        texto: "Principales anomalías y patologías del cuero cabelludo y el cabello que encontramos con frecuencia en los centros de imagen personal.",
-      },
-      {
-        numero: "02",
-        titulo: "Estrés postraumático y alopecias",
-        texto: "Influencia del estrés postraumático en las alopecias y en las anomalías del cuero cabelludo y el cabello.",
-      },
-      {
-        numero: "03",
-        titulo: "Salud mental, piel y cabello",
-        texto: "Cómo la salud mental influye en el estado de la piel y el cabello.",
-      },
-      {
-        numero: "04",
-        titulo: "Tiroides, inflamación e inmunidad",
-        texto: "Cómo afecta la glándula tiroides a la piel y el cabello, y la influencia de la inflamación y el sistema inmunológico en la caída. Tratamientos médicos.",
-      },
-      {
-        numero: "05",
-        titulo: "Principales patologías y cómo actuar",
-        texto: "Alopecia areata y frontal fibrosante, dermatitis seborreica aguda, psoriasis, foliculitis y alopecia androgenética. Cómo detectarlas y actuar.",
-      },
-      {
-        numero: "06",
-        titulo: "Enfermedades oncológicas y cabello",
-        texto: "Cómo afectan al cabello y cómo actuar desde la peluquería.",
-      },
-      {
-        numero: "07",
-        titulo: "Menopausia, piel y cabello",
-        texto: "Cambios capilares y de la piel asociados a la menopausia.",
-      },
-      {
-        numero: "08",
-        titulo: "Oxigenación del cuero cabelludo",
-        texto: "Un servicio terapéutico de eficacia técnica, salud y relax dentro del salón de peluquería.",
-      },
-      {
-        numero: "09",
-        titulo: "Enfoque fitoterapéutico Jaldún",
-        texto: "Tratamiento médico y fitocosmético Jaldún, principios activos y sistema integral para la alopecia y las anomalías capilares.",
-      },
-      {
-        numero: "10",
-        titulo: "Nutrición y salud capilar",
-        texto: "Nutrientes esenciales para el correcto funcionamiento de la piel y el cabello, y la importancia de la suplementación.",
-      },
-      {
-        numero: "11",
-        titulo: "Pediculosis y salud capilar",
-        texto: "Detección y abordaje de la pediculosis desde el centro de imagen personal.",
-      },
-      {
-        numero: "12",
-        titulo: "Crecimiento capilar",
-        texto: "Cuánto crece el cabello y por qué a algunas personas les crece poco.",
-      },
-    ],
-  },
-
-  /* ---------------------------------------------------------------------
      6. PONENTES
      --------------------------------------------------------------------- */
   ponentes: {
@@ -195,6 +123,13 @@ const CONFIG = {
         cargo: "Director Técnico de Jaldún Salud Capilar",
         empresa: "",
         bio: "Autor de los libros: «El cuero cabelludo. Preguntas y respuestas» y «Tricología en la peluquería».",
+        temas: [
+          "Actualidad del mundo de la salud capilar en los centros de imagen personal.",
+          "Introducción a las principales anomalías y patologías capilares, que encontramos con frecuencia en los centros de imagen personal.",
+          "Influencia del estrés postraumático en las alopecias y en las anomalías del cuero cabelludo y el cabello.",
+          "Alopecia androgenética, enfoque del tratamiento médico y fitocosmético Jaldún.",
+          "Sistema integral para el tratamiento de la alopecia y las anomalías capilares, principios activos.",
+        ],
         redes: { linkedin: "", twitter: "", web: "" },
       },
       {
@@ -203,6 +138,12 @@ const CONFIG = {
         cargo: "Medicina estética y capilar",
         empresa: "",
         bio: "Medicina estética y capilar.",
+        temas: [
+          "Principales patologías del cuero cabelludo que se detectan en la peluquería y cómo actuar.",
+          "Alopecia areata, alopecia frontal fibrosante.",
+          "Dermatitis seborreica aguda, psoriasis y foliculitis.",
+          "Menopausia, piel y cabello.",
+        ],
         redes: { linkedin: "", twitter: "", web: "" },
       },
       {
@@ -211,6 +152,11 @@ const CONFIG = {
         cargo: "Internista · Medicina capilar regenerativa",
         empresa: "",
         bio: "Internista. Medicina capilar regenerativa.",
+        temas: [
+          "Influencia de la inflamación y del sistema inmunológico en la caída del cabello. Tratamientos médicos.",
+          "Cómo afecta el funcionamiento de la glándula tiroides a la piel y el cabello.",
+          "Enfermedades oncológicas. Cómo afecta al cabello y cómo actuar desde los centros de imagen personal.",
+        ],
         redes: { linkedin: "", twitter: "", web: "" },
       },
       {
@@ -219,6 +165,10 @@ const CONFIG = {
         cargo: "Director Técnico de Centros Capilares",
         empresa: "Jaldún",
         bio: "Director Técnico Centros Capilares Jaldún.",
+        temas: [
+          "¿Cuánto crece el cabello y por qué a algunas personas les crece muy poco?",
+          "¿Qué puedo hacer para tener más saludable el cabello?",
+        ],
         redes: { linkedin: "", twitter: "", web: "" },
       },
       {
@@ -227,6 +177,9 @@ const CONFIG = {
         cargo: "Especialista en salud mental",
         empresa: "",
         bio: "Médica especialista en salud mental.",
+        temas: [
+          "Salud mental, salud general, piel y cabello.",
+        ],
         redes: { linkedin: "", twitter: "", web: "" },
       },
       {
@@ -235,6 +188,10 @@ const CONFIG = {
         cargo: "Nutricionista dietista",
         empresa: "Instituto de Naturopatía",
         bio: "Nutricionista dietista. Instituto de Naturopatía.",
+        temas: [
+          "Nutrición, la clave de la salud de la piel y el cabello.",
+          "Nutrientes esenciales para el correcto funcionamiento de la piel y el cabello.",
+        ],
         redes: { linkedin: "", twitter: "", web: "" },
       },
       {
@@ -243,6 +200,9 @@ const CONFIG = {
         cargo: "Consultor de empresas",
         empresa: "",
         bio: "Consultor de empresas especializado en estrategia, finanzas, ventas y recursos humanos.",
+        temas: [
+          "Especializarte te sale rentable.",
+        ],
         redes: { linkedin: "", twitter: "", web: "" },
       },
       {
@@ -251,6 +211,9 @@ const CONFIG = {
         cargo: "Bioquímica · Profesora de Imagen Personal",
         empresa: "",
         bio: "Graduada en Bioquímica y Ciencias Biomédicas. Profesora en asesoría de imagen personal.",
+        temas: [
+          "De la proteína al cabello.",
+        ],
         redes: { linkedin: "", twitter: "", web: "" },
       },
       {
@@ -259,6 +222,9 @@ const CONFIG = {
         cargo: "Medicina ortomolecular y MTC",
         empresa: "",
         bio: "Especialista en medicina ortomolecular y medicina tradicional china.",
+        temas: [
+          "Depura tu organismo y tendrás un cuerpo y piel saludable.",
+        ],
         redes: { linkedin: "", twitter: "", web: "" },
       },
       {
@@ -267,6 +233,9 @@ const CONFIG = {
         cargo: "Técnica Capilar",
         empresa: "Jaldún · Málaga",
         bio: "Técnica capilar Jaldún. Especialista en pediculosis.",
+        temas: [
+          "Pediculosis y salud capilar.",
+        ],
         redes: { linkedin: "", twitter: "", web: "" },
       },
     ],

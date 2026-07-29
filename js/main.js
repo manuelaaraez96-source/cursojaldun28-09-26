@@ -247,23 +247,6 @@
     initCarousel({ gridId: "sobre-bloques", prevId: "sobre-prev", nextId: "sobre-next", dotsId: "sobre-dots" });
   }
 
-  function renderTemario(c) {
-    const t = c.temario;
-    const eyebrow = document.getElementById("temario-eyebrow");
-    if (eyebrow) { if (t.etiqueta) eyebrow.textContent = t.etiqueta; else eyebrow.style.display = "none"; }
-    setText("temario-title", t.titulo);
-    setText("temario-subtitle", t.subtitulo);
-    const grid = $("#temario-grid");
-    t.temas.forEach(tema => {
-      grid.appendChild(el("div", "topic",
-        `<span class="topic__num">${tema.numero}</span>
-         <h3 class="card__title">${tema.titulo}</h3>
-         <p class="card__text">${tema.texto}</p>`));
-    });
-    const nota = document.getElementById("temario-nota");
-    if (nota) { if (t.nota) nota.textContent = t.nota; else nota.style.display = "none"; }
-  }
-
   function socialLinks(redes, baseClass) {
     if (!redes) return "";
     return Object.entries(redes)
@@ -285,6 +268,7 @@
          <div class="speaker__eyebrow">${po.etiqueta || "Ponente"}</div>
          <h3 class="speaker__name">${po.nombre}</h3>
          ${po.bio ? `<p class="speaker__bio">${po.bio}</p>` : ""}
+         ${po.temas && po.temas.length ? `<ul class="speaker__topics">${po.temas.map(t => `<li>${t}</li>`).join("")}</ul>` : ""}
          ${redes ? `<div class="speaker__social">${redes}</div>` : ""}`));
     });
   }
@@ -441,7 +425,6 @@
     renderTicker(CONFIG);
     renderPatologiasGaleria(CONFIG);
     renderSobre(CONFIG);
-    renderTemario(CONFIG);
     renderPonentes(CONFIG);
     renderEvento(CONFIG);
     renderCondiciones(CONFIG);
