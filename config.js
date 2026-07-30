@@ -124,11 +124,10 @@ const CONFIG = {
         empresa: "",
         bio: "Autor de los libros: «El cuero cabelludo. Preguntas y respuestas» y «Tricología en la peluquería».",
         temas: [
-          "Actualidad del mundo de la salud capilar en los centros de imagen personal.",
-          "Introducción a las principales anomalías y patologías capilares, que encontramos con frecuencia en los centros de imagen personal.",
+          "Actualidad de la salud capilar en los centros de imagen personal.",
+          "Principales anomalías y patologías capilares, que encontramos en los centros de imagen personal.",
           "Influencia del estrés postraumático en las alopecias y en las anomalías del cuero cabelludo y el cabello.",
-          "Alopecia androgenética, enfoque del tratamiento médico y fitocosmético Jaldún.",
-          "Sistema integral para el tratamiento de la alopecia y las anomalías capilares, principios activos.",
+          "Alopecia androgenética. Enfoque del tratamiento.",
         ],
         redes: { linkedin: "", twitter: "", web: "" },
       },
@@ -183,6 +182,17 @@ const CONFIG = {
         redes: { linkedin: "", twitter: "", web: "" },
       },
       {
+        foto: "assets/ponente-jesus.jpg",
+        nombre: "Jesús Huertas Duque",
+        cargo: "Consultor de empresas",
+        empresa: "",
+        bio: "Consultor de empresas especializado en estrategia, finanzas, ventas y recursos humanos.",
+        temas: [
+          "Especializarte te sale rentable.",
+        ],
+        redes: { linkedin: "", twitter: "", web: "" },
+      },
+      {
         foto: "assets/ponente-jose.jpg",
         nombre: "José Espinosa",
         cargo: "Nutricionista dietista",
@@ -191,17 +201,6 @@ const CONFIG = {
         temas: [
           "Nutrición, la clave de la salud de la piel y el cabello.",
           "Nutrientes esenciales para el correcto funcionamiento de la piel y el cabello.",
-        ],
-        redes: { linkedin: "", twitter: "", web: "" },
-      },
-      {
-        foto: "assets/ponente-jesus.jpg",
-        nombre: "Jesús Huertas Duque",
-        cargo: "Consultor de empresas",
-        empresa: "",
-        bio: "Consultor de empresas especializado en estrategia, finanzas, ventas y recursos humanos.",
-        temas: [
-          "Especializarte te sale rentable.",
         ],
         redes: { linkedin: "", twitter: "", web: "" },
       },
