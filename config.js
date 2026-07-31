@@ -194,6 +194,7 @@ const CONFIG = {
       },
       {
         foto: "assets/ponente-jose.jpg",
+        video: "assets/ponente-jose-hover.mp4", // PRUEBA: vídeo que se reproduce al pasar el ratón. Quita esta línea para volver solo a la foto.
         nombre: "José Espinosa",
         cargo: "Nutricionista dietista",
         empresa: "Instituto de Naturopatía",

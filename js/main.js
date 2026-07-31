@@ -260,16 +260,51 @@
     setText("ponentes-title", p.titulo);
     setText("ponentes-subtitle", p.subtitulo);
     const grid = $("#ponentes-grid");
+    const isTouch = window.matchMedia("(hover: none)").matches;
+    let activeVideoCard = null;
+    const deactivateVideoCard = (c) => {
+      const v = c.querySelector(".speaker__video");
+      if (v) v.pause();
+      c.classList.remove("is-video-active");
+      c.style.height = "";
+      if (activeVideoCard === c) activeVideoCard = null;
+    };
     p.lista.forEach(po => {
       const redes = socialLinks(po.redes);
-      grid.appendChild(el("div", "speaker reveal",
-        `<img class="speaker__photo" src="${po.foto}" alt="${po.nombre}" loading="lazy"
-              onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22116%22 height=%22116%22%3E%3Crect width=%22116%22 height=%22116%22 fill=%22%23eeeefe%22/%3E%3C/svg%3E'">
-         <div class="speaker__eyebrow">${po.etiqueta || "Ponente"}</div>
-         <h3 class="speaker__name">${po.nombre}</h3>
-         ${po.bio ? `<p class="speaker__bio">${po.bio}</p>` : ""}
-         ${po.temas && po.temas.length ? `<ul class="speaker__topics">${po.temas.map(t => `<li>${t}</li>`).join("")}</ul>` : ""}
-         ${redes ? `<div class="speaker__social">${redes}</div>` : ""}`));
+      const card = el("div", "speaker reveal",
+        `<div class="speaker__media">
+           <img class="speaker__photo" src="${po.foto}" alt="${po.nombre}" loading="lazy"
+                onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22116%22 height=%22116%22%3E%3Crect width=%22116%22 height=%22116%22 fill=%22%23eeeefe%22/%3E%3C/svg%3E'">
+           ${po.video ? `<video class="speaker__video" src="${po.video}" loop playsinline preload="none"></video><div class="speaker__scrim"></div>` : ""}
+         </div>
+         <div class="speaker__content">
+           <div class="speaker__eyebrow">${po.etiqueta || "Ponente"}</div>
+           <h3 class="speaker__name">${po.nombre}</h3>
+           ${po.bio ? `<p class="speaker__bio">${po.bio}</p>` : ""}
+           ${po.temas && po.temas.length ? `<ul class="speaker__topics">${po.temas.map(t => `<li>${t}</li>`).join("")}</ul>` : ""}
+           ${redes ? `<div class="speaker__social">${redes}</div>` : ""}
+         </div>`);
+      grid.appendChild(card);
+      if (po.video) {
+        const video = card.querySelector(".speaker__video");
+        const activateVideoCard = () => {
+          if (activeVideoCard && activeVideoCard !== card) deactivateVideoCard(activeVideoCard);
+          card.style.height = card.offsetHeight + "px";
+          video.currentTime = 0;
+          video.play().catch(() => {});
+          card.classList.add("is-video-active");
+          activeVideoCard = card;
+        };
+        if (isTouch) {
+          card.addEventListener("click", () => {
+            if (card.classList.contains("is-video-active")) deactivateVideoCard(card);
+            else activateVideoCard();
+          });
+        } else {
+          card.addEventListener("mouseenter", activateVideoCard);
+          card.addEventListener("mouseleave", () => deactivateVideoCard(card));
+        }
+      }
     });
   }
 
