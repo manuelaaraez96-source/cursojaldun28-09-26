@@ -294,7 +294,13 @@
           if (activeVideoCard && activeVideoCard !== card) deactivateVideoCard(activeVideoCard);
           card.style.height = card.offsetHeight + "px";
           video.currentTime = 0;
-          video.play().catch(() => {});
+          video.muted = false;
+          video.play().catch(() => {
+            // Los navegadores bloquean el audio automático sin un clic previo del usuario.
+            // Si falla con sonido, reintentamos silenciado para que al menos se vea el vídeo.
+            video.muted = true;
+            video.play().catch(() => {});
+          });
           card.classList.add("is-video-active");
           activeVideoCard = card;
         };
