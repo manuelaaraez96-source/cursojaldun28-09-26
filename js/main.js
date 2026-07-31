@@ -310,6 +310,12 @@
         } else {
           card.addEventListener("mouseenter", activateVideoCard);
           card.addEventListener("mouseleave", () => deactivateVideoCard(card));
+          // Un clic es un gesto real: el navegador permite audio de inmediato,
+          // a diferencia del hover. Así el sonido funciona ya en la primera vez.
+          card.addEventListener("click", () => {
+            video.muted = false;
+            video.play().catch(() => {});
+          });
         }
       }
     });
