@@ -277,6 +277,9 @@
                 onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22116%22 height=%22116%22%3E%3Crect width=%22116%22 height=%22116%22 fill=%22%23eeeefe%22/%3E%3C/svg%3E'">
            ${po.video ? `<video class="speaker__video" src="${po.video}" loop playsinline preload="none"></video><div class="speaker__scrim"></div>` : ""}
          </div>
+         ${po.video && isTouch ? `<div class="speaker__tap-hint" aria-hidden="true">
+             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+           </div>` : ""}
          <div class="speaker__content">
            <div class="speaker__eyebrow">${po.etiqueta || "Ponente"}</div>
            <h3 class="speaker__name">${po.nombre}</h3>

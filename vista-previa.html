@@ -420,6 +420,21 @@ h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 700; letter-sp
               border-radius .45s cubic-bezier(.4,0,.2,1), border-color .3s ease, box-shadow .3s ease;
 }
 .speaker__media:has(.speaker__video) { cursor: pointer; }
+.speaker__tap-hint {
+  position: absolute; z-index: 3; pointer-events: none;
+  top: calc(2.3rem + 116px - 14px); left: calc(2rem + 116px - 14px);
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--lavender-deep); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  border: 2px solid #fff; box-shadow: 0 3px 10px hsl(246 45% 40% / .35);
+  animation: tapHintPulse 2.2s ease-in-out infinite;
+}
+.speaker__tap-hint svg { width: 12px; height: 12px; margin-left: 1px; }
+.speaker.is-video-active .speaker__tap-hint { display: none; }
+@keyframes tapHintPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
 .speaker__photo {
   position: absolute; inset: 0; width: 100%; height: 100%;
   object-fit: cover; object-position: center 22%; margin: 0;
@@ -1438,6 +1453,9 @@ const CONFIG = {
                 onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22116%22 height=%22116%22%3E%3Crect width=%22116%22 height=%22116%22 fill=%22%23eeeefe%22/%3E%3C/svg%3E'">
            ${po.video ? `<video class="speaker__video" src="${po.video}" loop playsinline preload="none"></video><div class="speaker__scrim"></div>` : ""}
          </div>
+         ${po.video && isTouch ? `<div class="speaker__tap-hint" aria-hidden="true">
+             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+           </div>` : ""}
          <div class="speaker__content">
            <div class="speaker__eyebrow">${po.etiqueta || "Ponente"}</div>
            <h3 class="speaker__name">${po.nombre}</h3>
