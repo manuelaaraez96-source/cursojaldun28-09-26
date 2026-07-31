@@ -1441,7 +1441,6 @@ const CONFIG = {
     setText("ponentes-title", p.titulo);
     setText("ponentes-subtitle", p.subtitulo);
     const grid = $("#ponentes-grid");
-    const isTouch = window.matchMedia("(hover: none)").matches;
     let activeVideoCard = null;
     const deactivateVideoCard = (c) => {
       const v = c.querySelector(".speaker__video");
@@ -1473,31 +1472,18 @@ const CONFIG = {
         const activateVideoCard = () => {
           if (activeVideoCard && activeVideoCard !== card) deactivateVideoCard(activeVideoCard);
           video.currentTime = 0;
+          // El clic es un gesto real del usuario: el navegador permite audio
+          // de inmediato, a diferencia del hover. Por eso solo se reproduce
+          // al hacer clic, nunca automáticamente al pasar el ratón.
           video.muted = false;
-          video.play().catch(() => {
-            // Los navegadores bloquean el audio automático sin un clic previo del usuario.
-            // Si falla con sonido, reintentamos silenciado para que al menos se vea el vídeo.
-            video.muted = true;
-            video.play().catch(() => {});
-          });
+          video.play().catch(() => {});
           card.classList.add("is-video-active");
           activeVideoCard = card;
         };
-        if (isTouch) {
-          card.addEventListener("click", () => {
-            if (card.classList.contains("is-video-active")) deactivateVideoCard(card);
-            else activateVideoCard();
-          });
-        } else {
-          card.addEventListener("mouseenter", activateVideoCard);
-          card.addEventListener("mouseleave", () => deactivateVideoCard(card));
-          // Un clic es un gesto real: el navegador permite audio de inmediato,
-          // a diferencia del hover. Así el sonido funciona ya en la primera vez.
-          card.addEventListener("click", () => {
-            video.muted = false;
-            video.play().catch(() => {});
-          });
-        }
+        card.addEventListener("click", () => {
+          if (card.classList.contains("is-video-active")) deactivateVideoCard(card);
+          else activateVideoCard();
+        });
       }
     });
   }
