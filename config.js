@@ -183,6 +183,7 @@ const CONFIG = {
       },
       {
         foto: "assets/ponente-jesus.jpg",
+        video: "assets/ponente-jesus-hover.mp4",
         nombre: "Jesús Huertas Duque",
         cargo: "Consultor de empresas",
         empresa: "",
