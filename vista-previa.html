@@ -443,13 +443,16 @@ h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 700; letter-sp
 }
 .speaker__video {
   position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; object-position: center 38%;
+  object-fit: cover; object-position: center center;
   opacity: 0; transition: opacity .35s ease; pointer-events: none;
 }
 .speaker__scrim {
   position: absolute; inset: 0; pointer-events: none;
   background: linear-gradient(180deg, transparent 55%, hsl(246 45% 8% / .55) 100%);
   opacity: 0; transition: opacity .4s ease;
+}
+.speaker.is-video-active {
+  aspect-ratio: 1080 / 1500; height: auto;
 }
 .speaker.is-video-active .speaker__media {
   top: 0; left: 0; width: 100%; height: 100%; border-radius: var(--r);
@@ -1444,7 +1447,6 @@ const CONFIG = {
       const v = c.querySelector(".speaker__video");
       if (v) v.pause();
       c.classList.remove("is-video-active");
-      c.style.height = "";
       if (activeVideoCard === c) activeVideoCard = null;
     };
     p.lista.forEach(po => {
@@ -1470,7 +1472,6 @@ const CONFIG = {
         const video = card.querySelector(".speaker__video");
         const activateVideoCard = () => {
           if (activeVideoCard && activeVideoCard !== card) deactivateVideoCard(activeVideoCard);
-          card.style.height = card.offsetHeight + "px";
           video.currentTime = 0;
           video.muted = false;
           video.play().catch(() => {

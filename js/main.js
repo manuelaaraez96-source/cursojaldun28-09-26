@@ -266,7 +266,6 @@
       const v = c.querySelector(".speaker__video");
       if (v) v.pause();
       c.classList.remove("is-video-active");
-      c.style.height = "";
       if (activeVideoCard === c) activeVideoCard = null;
     };
     p.lista.forEach(po => {
@@ -292,7 +291,6 @@
         const video = card.querySelector(".speaker__video");
         const activateVideoCard = () => {
           if (activeVideoCard && activeVideoCard !== card) deactivateVideoCard(activeVideoCard);
-          card.style.height = card.offsetHeight + "px";
           video.currentTime = 0;
           video.muted = false;
           video.play().catch(() => {
