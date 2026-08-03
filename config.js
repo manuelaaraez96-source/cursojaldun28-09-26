@@ -219,6 +219,7 @@ const CONFIG = {
       },
       {
         foto: "assets/ponente-miguel.jpg",
+        video: "assets/ponente-miguel-hover.mp4",
         nombre: "Miguel Ángel de Isidro",
         cargo: "Medicina ortomolecular y MTC",
         empresa: "",
