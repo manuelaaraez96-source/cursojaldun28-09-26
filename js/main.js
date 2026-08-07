@@ -265,6 +265,7 @@
       const v = c.querySelector(".speaker__video");
       if (v) v.pause();
       c.classList.remove("is-video-active");
+      c.style.height = "";
       if (activeVideoCard === c) activeVideoCard = null;
     };
     p.lista.forEach(po => {
@@ -290,6 +291,9 @@
         const video = card.querySelector(".speaker__video");
         const activateVideoCard = () => {
           if (activeVideoCard && activeVideoCard !== card) deactivateVideoCard(activeVideoCard);
+          // Fija la altura actual (la de la fila, igual que sus tarjetas vecinas)
+          // antes de activar, para que el vídeo no achique la tarjeta.
+          card.style.height = card.offsetHeight + "px";
           video.currentTime = 0;
           // El clic es un gesto real del usuario: el navegador permite audio
           // de inmediato, a diferencia del hover. Por eso solo se reproduce

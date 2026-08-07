@@ -133,6 +133,7 @@ const CONFIG = {
       },
       {
         foto: "assets/ponente-raquel.jpg",
+        video: "assets/ponente-raquel-hover.mp4",
         nombre: "Dra. Raquel Navarro",
         cargo: "Medicina estética y capilar",
         empresa: "",
