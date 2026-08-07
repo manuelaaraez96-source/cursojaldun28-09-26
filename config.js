@@ -148,6 +148,7 @@ const CONFIG = {
       },
       {
         foto: "assets/ponente-francisco.jpg",
+        video: "assets/ponente-francisco-hover.mp4",
         nombre: "Dr. Francisco Amorós",
         cargo: "Internista · Medicina capilar regenerativa",
         empresa: "",
