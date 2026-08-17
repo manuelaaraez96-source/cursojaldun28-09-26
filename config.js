@@ -210,6 +210,7 @@ const CONFIG = {
       },
       {
         foto: "assets/ponente-maria.jpg",
+        video: "assets/ponente-maria-hover.mp4",
         nombre: "María García González",
         cargo: "Bioquímica · Profesora de Imagen Personal",
         empresa: "",
