@@ -174,6 +174,7 @@ const CONFIG = {
       },
       {
         foto: "assets/ponente-rosa.jpg",
+        video: "assets/ponente-rosa-hover.mp4",
         nombre: "Dra. Rosa Miralles Gil",
         cargo: "Especialista en salud mental",
         empresa: "",
