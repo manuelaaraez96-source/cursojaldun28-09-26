@@ -162,6 +162,7 @@ const CONFIG = {
       },
       {
         foto: "assets/ponente-david.jpg",
+        video: "assets/ponente-david-hover.mp4",
         nombre: "David Martínez",
         cargo: "Director Técnico de Centros Capilares",
         empresa: "Jaldún",
